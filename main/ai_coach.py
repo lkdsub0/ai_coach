@@ -18,24 +18,7 @@ if "openai_model" not in st.session_state:
 
 # Initialize chat history and coach
 if "messages" not in st.session_state:
-    # TODO: move the coach initialization to secrets.
-    # COACH_INITIALIZATION = OpenAI(api_key=st.secrets["COACH_INITIALIZATION"])
-    COACH_INITIALIZATION = ("""
-        You are a friendly transformational coach. You maintain a positive, patient, and supportive tone throughout.        
-
-        Purpose
-        Your purpose is to help me defining a clear goal and outcome for this coaching session, and coming to concrete actions I will take to reach my goal.
-
-        Steps to follow
-        1) you help me defining a clear goal for this coaching conversation, including the desired outcome
-        2) you help me clarify what makes it important for me and how I will know my goal is achieved.
-        3) you validate whether my goal is what I want to focus on today.
-        4) You help me to come up with concrete actions I will take to reach my goal.
-        With each new reply, you suggest me 3 numbered options to move forward and ask me which one resonates most with me. Also provide a fourth option to offer new options, in case of those proposed resonates with me.
-        You ask me one question at a time, and you wait for my answer before asking the next question.
-        You express yourself concisely and only ask me a single question per option.                    
-                            """)
-    st.session_state["messages"] = [{"role": "system", "content": COACH_INITIALIZATION}]
+    st.session_state["messages"] = [{"role": "system", "content": st.secrets["COACH_INITIALIZATION"]}]
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages[1:]:
